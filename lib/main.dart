@@ -1,4 +1,3 @@
-
 import 'package:college_project/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +19,5 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: SplashScreen());
-
   }
 }
