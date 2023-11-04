@@ -1,3 +1,4 @@
+import 'package:college_project/view/allergy_screen/allergyselection.dart';
 import 'package:college_project/view/login_screen/login_screen.dart';
 import 'package:college_project/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: LoginScreen());
+        home: FoodAllergy());
   }
 }
