@@ -42,7 +42,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       fit: BoxFit.cover,
                     ),
                   ),
-
                   Positioned(
                     bottom: 480,
                     width: mediawidth * 1,
@@ -84,12 +83,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  // Positioned(
-                  //     bottom: 450,
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.only(left: 180),
-                  //       child: Container(child: Text('OR')),
-                  //     )),
                   Positioned(
                     bottom: 350,
                     width: 395,
@@ -154,7 +147,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           )),
                     ],
                   ),
-
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 70, vertical: 5),
@@ -208,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => RegistrationScreen()));
     } else {
-      final _errorMessage = 'password and username does not matchhhhh';
+      final _errorMessage = 'password and username does not match';
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           behavior: SnackBarBehavior.floating,
           backgroundColor: Colors.red,
