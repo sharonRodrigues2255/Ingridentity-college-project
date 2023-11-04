@@ -1,5 +1,3 @@
-import 'package:college_project/view/allergy_screen/allergyselection.dart';
-import 'package:college_project/view/login_screen/login_screen.dart';
 import 'package:college_project/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 

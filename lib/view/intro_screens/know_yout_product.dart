@@ -1,4 +1,5 @@
 import 'package:college_project/view/intro_screens/widgets/bottom_navigator_container.dart';
+import 'package:college_project/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class KnowYourProduct extends StatelessWidget {
@@ -59,7 +60,12 @@ class KnowYourProduct extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigatorContainer(),
+      bottomNavigationBar: InkWell(
+          onTap: () {
+            Navigator.of(context)
+                .push((MaterialPageRoute(builder: (context) => LoginScreen())));
+          },
+          child: BottomNavigatorContainer()),
     );
   }
 }
