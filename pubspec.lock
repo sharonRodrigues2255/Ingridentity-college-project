@@ -300,7 +300,7 @@ packages:
       sha256: afe077240a270dcfd2aafe77602b4113645af95d0ad31128cc02bce5ac5d5152
       url: "https://pub.dev"
     source: hosted
-<<<<<<< HEAD
+
     version: "0.1.4-beta"
   win32:
     dependency: transitive
@@ -318,11 +318,16 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.3"
+
 sdks:
   dart: ">=3.1.0-246.0.dev <4.0.0"
   flutter: ">=3.7.0"
-=======
+
     version: "0.3.0"
 sdks:
   dart: ">=3.2.0-194.0.dev <4.0.0"
->>>>>>> 88fbf239aaa58ac536c6096a21a93059ea08da88
+
+ 
+sdks:
+  dart: ">=3.2.0-194.0.dev <4.0.0"
+
