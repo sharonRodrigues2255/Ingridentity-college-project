@@ -20,175 +20,156 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     var mediawidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Stack(
+      body: Column(
         children: [
-          Column(
-            children: [
-              Container(
-                height: 300,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    ),
-                    color: Colors.lightGreen),
-                child: Image.asset(
-                  'assets/images/shopping.png',
-                  fit: BoxFit.cover,
+          Container(
+            height: 300,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
                 ),
-              ),
-
-              Positioned(
-                bottom: 480,
-                width: mediawidth * 1,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 44),
-                  child: Material(
-                    borderRadius: BorderRadius.circular(15),
-                    elevation: 4,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        height: 60,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.white),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextField(
-                            focusNode: fieldone,
-                            onSubmitted: (value) {
-                              FocusScope.of(context).requestFocus(fieldtwo);
-                            },
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'Email or Mobile number'),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              // Positioned(
-              //     bottom: 450,
-              //     child: Padding(
-              //       padding: const EdgeInsets.only(left: 180),
-              //       child: Container(child: Text('OR')),
-              //     )),
-              Positioned(
-                bottom: 350,
-                width: 395,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
-                  child: Material(
-                    borderRadius: BorderRadius.circular(15),
-                    elevation: 4,
-                    child: Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.white),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          scrollPhysics: NeverScrollableScrollPhysics(),
-                          focusNode: fieldtwo,
-                          onSubmitted: (value) {
-                            FocusScope.of(context).requestFocus(fieldthree);
-                          },
-                          decoration: InputDecoration(
-                              border: InputBorder.none, hintText: 'password'),
-                          obscureText: true,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                bottom: 350,
-                width: 395,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
-                  child: Material(
-                    borderRadius: BorderRadius.circular(15),
-                    elevation: 4,
-                    child: Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.white),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          focusNode: fieldthree,
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: ' confirm password'),
-                          obscureText: true,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        logout(context);
-                        // Navigator.pushReplacement(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => LoginScreen()));
-                      },
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 25, vertical: 1),
-                        child: Text(
-                          'Already have account',
-                          style: TextStyle(fontSize: mediawidth * .03),
-                        ),
-                      )),
-                ],
-              ),
-
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 70, vertical: 5),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(15)),
-                  height: 50,
-                  child: Center(
-                    child: Text(
-                      "Signup",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+                color: Colors.lightGreen),
+            child: Image.asset(
+              'assets/images/shopping.png',
+              fit: BoxFit.cover,
+            ),
           ),
-          Positioned(
-            bottom: 480,
-            left: 130,
-            child: CircleAvatar(
-              radius: mediaheight * .07,
-              child: Icon(
-                Icons.person,
-                size: mediaheight * .1,
+
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 44),
+            child: Material(
+              borderRadius: BorderRadius.circular(15),
+              elevation: 4,
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  height: 60,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      focusNode: fieldone,
+                      onSubmitted: (value) {
+                        FocusScope.of(context).requestFocus(fieldtwo);
+                      },
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Email or Mobile number'),
+                    ),
+                  ),
+                ),
               ),
             ),
-          )
+          ),
+          // Positioned(
+          //     bottom: 450,
+          //     child: Padding(
+          //       padding: const EdgeInsets.only(left: 180),
+          //       child: Container(child: Text('OR')),
+          //     )),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
+            child: Material(
+              borderRadius: BorderRadius.circular(15),
+              elevation: 4,
+              child: Container(
+                height: 60,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.white),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    scrollPhysics: NeverScrollableScrollPhysics(),
+                    focusNode: fieldtwo,
+                    onSubmitted: (value) {
+                      FocusScope.of(context).requestFocus(fieldthree);
+                    },
+                    decoration: InputDecoration(
+                        border: InputBorder.none, hintText: 'password'),
+                    obscureText: true,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
+            child: Material(
+              borderRadius: BorderRadius.circular(15),
+              elevation: 4,
+              child: Container(
+                height: 60,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.white),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    focusNode: fieldthree,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: ' confirm password'),
+                    obscureText: true,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                  onPressed: () {
+                    logout(context);
+                    // Navigator.pushReplacement(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => LoginScreen()));
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 1),
+                    child: Text(
+                      'Already have account',
+                      style: TextStyle(fontSize: mediawidth * .03),
+                    ),
+                  )),
+            ],
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 5),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.blue, borderRadius: BorderRadius.circular(15)),
+              height: 50,
+              child: Center(
+                child: Text(
+                  "Signup",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
+      // Positioned(
+      //   bottom: 480,
+      //   left: 130,
+      //   child: CircleAvatar(
+      //     radius: mediaheight * .07,
+      //     child: Icon(
+      //       Icons.person,
+      //       size: mediaheight * .1,
+      //     ),
+      //   ),
+      // ),
     );
   }
 

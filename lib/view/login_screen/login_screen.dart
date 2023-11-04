@@ -25,175 +25,148 @@ class _LoginScreenState extends State<LoginScreen> {
         resizeToAvoidBottomInset: false,
         body: Form(
           key: _formkey,
-          child: Stack(
+          child: Column(
             children: [
-              Column(
-                children: [
-                  Container(
-                    height: 300,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
-                        ),
-                        color: Colors.lightGreen),
-                    child: Image.asset(
-                      'assets/images/shopping.png',
-                      fit: BoxFit.cover,
+              Container(
+                height: 300,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
                     ),
-                  ),
-
-                  Positioned(
-                    bottom: 480,
-                    width: mediawidth * 1,
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, right: 20, top: 44),
-                      child: Material(
-                        borderRadius: BorderRadius.circular(15),
-                        elevation: 4,
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.white),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: _usernamecontroller,
-                              keyboardType: TextInputType.emailAddress,
-                              scrollPhysics: NeverScrollableScrollPhysics(),
-                              focusNode: fieldone,
-                              onFieldSubmitted: (value) {
-                                FocusScope.of(context).requestFocus(fieldtwo);
-                              },
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'username',
-                                  prefixIcon: Icon(Icons.person)),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return ('required');
-                                } else {
-                                  return (null);
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  // Positioned(
-                  //     bottom: 450,
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.only(left: 180),
-                  //       child: Container(child: Text('OR')),
-                  //     )),
-                  Positioned(
-                    bottom: 350,
-                    width: 395,
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, right: 20, top: 15),
-                      child: Material(
-                        borderRadius: BorderRadius.circular(15),
-                        elevation: 4,
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.white),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: _passwordcontroller,
-                              scrollPhysics: NeverScrollableScrollPhysics(),
-                              focusNode: fieldtwo,
-                              onFieldSubmitted: (value) {
-                                FocusScope.of(context).requestFocus(fieldtwo);
-                              },
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'password',
-                                  prefixIcon: Icon(Icons.key),
-                                  suffixIcon:
-                                      Icon(Icons.remove_red_eye_outlined)),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return ('required');
-                                } else {
-                                  return (null);
-                                }
-                              },
-                              obscureText: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        RegistrationScreen()));
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 25, vertical: 1),
-                            child: Text(
-                              'Dont have account?',
-                              style: TextStyle(fontSize: mediawidth * .03),
-                            ),
-                          )),
-                    ],
-                  ),
-
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 70, vertical: 5),
-                    child: InkWell(
-                      onTap: () {
-                        if (_formkey.currentState!.validate()) {
-                          checkLogin(context);
-                        }
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(15)),
-                        height: 50,
-                        child: Center(
-                          child: Text(
-                            "Signin",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                    color: Colors.lightGreen),
+                child: Image.asset(
+                  'assets/images/shopping.png',
+                  fit: BoxFit.cover,
+                ),
               ),
-              Positioned(
-                bottom: 480,
-                left: 130,
-                child: CircleAvatar(
-                  radius: mediaheight * .07,
-                  child: Icon(
-                    Icons.person,
-                    size: mediaheight * .1,
+
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 44),
+                child: Material(
+                  borderRadius: BorderRadius.circular(15),
+                  elevation: 4,
+                  child: Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: _usernamecontroller,
+                        keyboardType: TextInputType.emailAddress,
+                        scrollPhysics: NeverScrollableScrollPhysics(),
+                        focusNode: fieldone,
+                        onFieldSubmitted: (value) {
+                          FocusScope.of(context).requestFocus(fieldtwo);
+                        },
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'username',
+                            prefixIcon: Icon(Icons.person)),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return ('required');
+                          } else {
+                            return (null);
+                          }
+                        },
+                      ),
+                    ),
                   ),
                 ),
-              )
+              ),
+              // Positioned(
+              //     bottom: 450,
+              //     child: Padding(
+              //       padding: const EdgeInsets.only(left: 180),
+              //       child: Container(child: Text('OR')),
+              //     )),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
+                child: Material(
+                  borderRadius: BorderRadius.circular(15),
+                  elevation: 4,
+                  child: Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: _passwordcontroller,
+                        scrollPhysics: NeverScrollableScrollPhysics(),
+                        focusNode: fieldtwo,
+                        onFieldSubmitted: (value) {
+                          FocusScope.of(context).requestFocus(fieldtwo);
+                        },
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'password',
+                            prefixIcon: Icon(Icons.key),
+                            suffixIcon: Icon(Icons.remove_red_eye_outlined)),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return ('required');
+                          } else {
+                            return (null);
+                          }
+                        },
+                        obscureText: true,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => RegistrationScreen()));
+                      },
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 25, vertical: 1),
+                        child: Text(
+                          'Dont have account?',
+                          style: TextStyle(fontSize: mediawidth * .03),
+                        ),
+                      )),
+                ],
+              ),
+
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 70, vertical: 5),
+                child: InkWell(
+                  onTap: () {
+                    if (_formkey.currentState!.validate()) {
+                      checkLogin(context);
+                    }
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(15)),
+                    height: 50,
+                    child: Center(
+                      child: Text(
+                        "Signin",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ));
