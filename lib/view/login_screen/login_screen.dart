@@ -42,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fit: BoxFit.cover,
                     ),
                   ),
+
                   Positioned(
                     bottom: 480,
                     width: mediawidth * 1,
@@ -83,6 +84,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
+                  // Positioned(
+                  //     bottom: 450,
+                  //     child: Padding(
+                  //       padding: const EdgeInsets.only(left: 180),
+                  //       child: Container(child: Text('OR')),
+                  //     )),
                   Positioned(
                     bottom: 350,
                     width: 395,
@@ -147,6 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           )),
                     ],
                   ),
+
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 70, vertical: 5),
