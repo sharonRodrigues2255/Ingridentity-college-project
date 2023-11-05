@@ -1,3 +1,4 @@
+import 'package:college_project/view/allergy_screen/food_allergy.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -43,6 +44,12 @@ class _ScannerScreenState extends State<ScannerScreen> {
             controller: scannerController,
             onDetect: (capturedCode) {
               final code = capturedCode;
+              if (allergicItemsList.contains(code)) {
+                print("Harmful item");
+              } else {
+                print("healthy");
+              }
+              ;
             }),
       ),
     );

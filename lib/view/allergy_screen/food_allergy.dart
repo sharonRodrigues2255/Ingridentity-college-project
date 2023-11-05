@@ -1,3 +1,4 @@
+import 'package:college_project/view/bottom_navigation/bottom_navigation.dart';
 import 'package:college_project/view/diet_screen/dietselect.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,8 @@ class FoodAllergy extends StatefulWidget {
   @override
   State<FoodAllergy> createState() => _FoodAllergyState();
 }
+
+List allergicItemsList = [];
 
 class _FoodAllergyState extends State<FoodAllergy> {
   List<Map> allergy = [
@@ -65,54 +68,68 @@ class _FoodAllergyState extends State<FoodAllergy> {
                       // image
                       Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Stack(children: [
-                      Positioned(
-                          top: 5,
-                          left: 10,
-                          right: 10,
-                          child: CircleAvatar(
-                            radius: 38,
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Image(
-                                image: AssetImage(allergy[index]["logo"]),
-                              ),
-                            ),
-                          )),
-
-                      // selected indicator
-                      Positioned(
-                          right: 13,
-                          top: 12,
-                          child: CircleAvatar(
-                            radius: 10,
-                            backgroundColor: Colors.black,
+                    child: GestureDetector(
+                      onTap: () {
+                        if (!allergicItemsList
+                            .contains(allergy[index]["name"])) {
+                          allergicItemsList.add(allergy[index]["name"]);
+                        } else {
+                          allergicItemsList.remove(allergy[index]["name"]);
+                        }
+                        setState(() {});
+                      },
+                      child: Stack(children: [
+                        Positioned(
+                            top: 5,
+                            left: 10,
+                            right: 10,
                             child: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 8,
-                            ),
-                          )),
-
-                      // Name
-                      Positioned(
-                        top: 60,
-                        left: 19,
-                        right: 19,
-                        child: Container(
-                            decoration: BoxDecoration(
-                                boxShadow: [BoxShadow(blurRadius: 2)],
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(2.5),
-                              child: Center(
-                                  child: Text(
-                                allergy[index]["name"],
-                                style: TextStyle(fontSize: 13),
-                              )),
+                              radius: 38,
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Image(
+                                  image: AssetImage(allergy[index]["logo"]),
+                                ),
+                              ),
                             )),
-                      )
-                    ]),
+
+                        // selected indicator
+                        Positioned(
+                            right: 13,
+                            top: 12,
+                            child: CircleAvatar(
+                              radius: 10,
+                              backgroundColor: Colors.black,
+                              child: CircleAvatar(
+                                backgroundColor: allergicItemsList
+                                        .contains(allergy[index]["name"])
+                                    ? Colors.amber
+                                    : Colors.white,
+                                radius: 8,
+                              ),
+                            )),
+
+                        // Name
+                        Positioned(
+                          top: 60,
+                          left: 19,
+                          right: 19,
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  boxShadow: [BoxShadow(blurRadius: 2)],
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(2.5),
+                                child: Center(
+                                    child: Text(
+                                  allergy[index]["name"],
+                                  style: TextStyle(fontSize: 13),
+                                )),
+                              )),
+                        )
+                      ]),
+                    ),
                   ),
                 ),
               ),
@@ -160,7 +177,8 @@ class _FoodAllergyState extends State<FoodAllergy> {
                             onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Dietselect())),
+                                    builder: (context) =>
+                                        BottomNavigationScreen())),
                             child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.blue[600],
@@ -180,7 +198,8 @@ class _FoodAllergyState extends State<FoodAllergy> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Dietselect()));
+                                      builder: (context) =>
+                                          BottomNavigationScreen()));
                             },
                             child: Text(
                               "No, Thanks",

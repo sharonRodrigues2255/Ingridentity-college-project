@@ -14,7 +14,7 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   void initState() {
-    registrationController.loadDb() ?? [];
+    // registrationController.loadDb() ?? [];
     super.initState();
   }
 
@@ -55,7 +55,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, top: 44),
               child: Material(
@@ -93,12 +92,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
               ),
             ),
-            // Positioned(
-            //     bottom: 450,
-            //     child: Padding(
-            //       padding: const EdgeInsets.only(left: 180),
-            //       child: Container(child: Text('OR')),
-            //     )),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
               child: Material(
@@ -187,7 +180,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     )),
               ],
             ),
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 5),
               child: InkWell(

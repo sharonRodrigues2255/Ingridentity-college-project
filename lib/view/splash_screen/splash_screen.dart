@@ -1,7 +1,6 @@
 import 'package:college_project/main.dart';
 import 'package:college_project/view/intro_screens/welcome_page.dart';
 import 'package:college_project/view/login_screen/login_screen.dart';
-import 'package:college_project/view/registration_screen/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
