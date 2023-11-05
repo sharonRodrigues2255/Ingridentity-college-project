@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  Future<void> gotToLoging() async {
+  Future<void> goToLogin() async {
     await Future.delayed(Duration(seconds: 3));
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => LoginScreen()));
@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final _SharedPref = await SharedPreferences.getInstance();
     final userLogged = _SharedPref.get(SAVE_KEY_NAME);
     if (userLogged == null || userLogged == false) {
-      gotToLoging();
+      goToLogin();
     } else {
       splashWait();
     }

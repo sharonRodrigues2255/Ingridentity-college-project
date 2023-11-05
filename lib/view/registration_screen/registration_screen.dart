@@ -159,17 +159,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           ),
         ],
       ),
-      // Positioned(
-      //   bottom: 480,
-      //   left: 130,
-      //   child: CircleAvatar(
-      //     radius: mediaheight * .07,
-      //     child: Icon(
-      //       Icons.person,
-      //       size: mediaheight * .1,
-      //     ),
-      //   ),
-      // ),
     );
   }
 

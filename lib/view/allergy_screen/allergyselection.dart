@@ -10,24 +10,21 @@ class FoodAllergy extends StatefulWidget {
 
 class _FoodAllergyState extends State<FoodAllergy> {
   List<Map> allergy = [
-    {"logo": "assets/images/allergyitems/fish.png", "name": "milk"},
+    {"logo": "assets/images/allergyitems/milk.png", "name": "milk"},
     {"logo": "assets/images/allergyitems/fish.png", "name": "fish"},
-    {"logo": "assets/images/allergyitems/fish.png", "name": "Tree Nuts"},
-    {"logo": "assets/images/allergyitems/fish.png", "name": "Peanuts"},
+    {"logo": "assets/images/allergyitems/tree_nut.png", "name": "Tree Nuts"},
+    {"logo": "assets/images/allergyitems/peanut.png", "name": "Peanuts"},
+    {"logo": "assets/images/allergyitems/chicken.png", "name": "Chicken"},
     {
-      "logo": "assets/images/allergyitems/fish.png",
+      "logo": "assets/images/allergyitems/shelfish.png",
       "name": "Crustacean shelfish"
     },
-    {
-      "logo": "assets/images/allergyitems/fish.png",
-      "name": "Molluscan shelfish"
-    },
-    {"logo": "assets/images/allergyitems/fish.png", "name": "wheat"},
-    {"logo": "assets/images/allergyitems/fish.png", "name": "eggs"},
-    {"logo": "assets/images/allergyitems/fish.png", "name": "soy"},
-    {"logo": "assets/images/allergyitems/fish.png", "name": "Gluten"},
-    {"logo": "assets/images/allergyitems/fish.png", "name": "Lactose"},
-    {"logo": "assets/images/allergyitems/fish.png", "name": "Other"},
+    {"logo": "assets/images/allergyitems/wheat.png", "name": "wheat"},
+    {"logo": "assets/images/allergyitems/egg.png", "name": "eggs"},
+    {"logo": "assets/images/allergyitems/soy.png", "name": "soy"},
+    {"logo": "assets/images/allergyitems/gluten.png", "name": "Gluten"},
+    {"logo": "assets/images/allergyitems/lactose.png", "name": "Lactose"},
+    {"logo": "assets/images/allergyitems/other.png", "name": "Other"},
   ];
   @override
   Widget build(BuildContext context) {
@@ -36,7 +33,7 @@ class _FoodAllergyState extends State<FoodAllergy> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Food Allergens",
+          "Food Allergies",
           style: TextStyle(
               fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
         ),
@@ -75,7 +72,12 @@ class _FoodAllergyState extends State<FoodAllergy> {
                           right: 10,
                           child: CircleAvatar(
                             radius: 38,
-                            backgroundColor: Colors.amber,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Image(
+                                image: AssetImage(allergy[index]["logo"]),
+                              ),
+                            ),
                           )),
 
                       // selected indicator
@@ -84,6 +86,11 @@ class _FoodAllergyState extends State<FoodAllergy> {
                           top: 12,
                           child: CircleAvatar(
                             radius: 10,
+                            backgroundColor: Colors.black,
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 8,
+                            ),
                           )),
 
                       // Name

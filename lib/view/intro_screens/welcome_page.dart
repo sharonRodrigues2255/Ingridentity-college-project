@@ -70,7 +70,9 @@ class WelcomePage extends StatelessWidget {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => KnowYourProduct()));
           },
-          child: BottomNavigatorContainer()),
+          child: BottomNavigatorContainer(
+            text: "Next",
+          )),
     );
   }
 }

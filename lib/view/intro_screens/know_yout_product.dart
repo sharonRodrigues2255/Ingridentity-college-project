@@ -65,7 +65,9 @@ class KnowYourProduct extends StatelessWidget {
             Navigator.of(context)
                 .push((MaterialPageRoute(builder: (context) => LoginScreen())));
           },
-          child: BottomNavigatorContainer()),
+          child: BottomNavigatorContainer(
+            text: "Next",
+          )),
     );
   }
 }
