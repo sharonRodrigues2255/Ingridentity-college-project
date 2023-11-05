@@ -1,12 +1,14 @@
-import 'package:college_project/view/allergy_screen/allergyselection.dart';
-import 'package:college_project/view/bottom_navigation/bottom_navigation.dart';
-import 'package:college_project/view/diet_screen/dietselect.dart';
+import 'package:college_project/model/registration_model.dart';
 import 'package:college_project/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 const SAVE_KEY_NAME = 'userLOggedin';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(UserRegModelAdapter());
+  var box = await Hive.openBox('localdb');
   runApp(const MyApp());
 }
 
@@ -20,6 +22,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: BottomNavigationScreen());
+        home: SplashScreen());
   }
 }

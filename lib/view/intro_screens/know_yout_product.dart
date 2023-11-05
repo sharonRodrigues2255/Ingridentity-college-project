@@ -1,6 +1,8 @@
+import 'package:college_project/main.dart';
 import 'package:college_project/view/intro_screens/widgets/bottom_navigator_container.dart';
 import 'package:college_project/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class KnowYourProduct extends StatelessWidget {
   const KnowYourProduct({super.key});
@@ -62,12 +64,21 @@ class KnowYourProduct extends StatelessWidget {
       ),
       bottomNavigationBar: InkWell(
           onTap: () {
-            Navigator.of(context)
-                .push((MaterialPageRoute(builder: (context) => LoginScreen())));
+            logout(context);
+            // Navigator.of(context)
+            //     .push((MaterialPageRoute(builder: (context) => LoginScreen())));
           },
           child: BottomNavigatorContainer(
             text: "Next",
           )),
     );
+  }
+
+  logout(BuildContext context) async {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+        (Route) => false);
+    final _sharedPref = await SharedPreferences.getInstance();
+    await _sharedPref.setBool(SAVE_KEY_NAME, false);
   }
 }
