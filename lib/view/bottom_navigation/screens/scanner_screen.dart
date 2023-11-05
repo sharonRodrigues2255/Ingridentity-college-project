@@ -33,7 +33,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 backCameraOn = false;
                 setState(() {});
               },
-              icon: Icon(Icons.camera_front))
+              icon: backCameraOn == true
+                  ? Icon(Icons.camera_front)
+                  : Icon(Icons.photo_camera_back))
         ],
       ),
       body: Center(

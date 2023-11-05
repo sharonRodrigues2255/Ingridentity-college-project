@@ -1,9 +1,15 @@
+import 'package:college_project/view/bottom_navigation/bottom_navigation.dart';
 import 'package:college_project/view/intro_screens/widgets/bottom_navigator_container.dart';
 import 'package:flutter/material.dart';
 
-class History extends StatelessWidget {
+class History extends StatefulWidget {
   const History({super.key});
 
+  @override
+  State<History> createState() => _HistoryState();
+}
+
+class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +49,13 @@ class History extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Text("Start scanning products for their detailed analysis"),
-            BottomNavigatorContainer(text: "Scan QR Codes")
+            GestureDetector(
+                onTap: () {
+                  selectedIndex = 0;
+
+                  setState(() {});
+                },
+                child: BottomNavigatorContainer(text: "Scan QR Codes"))
           ],
         ),
       ),
