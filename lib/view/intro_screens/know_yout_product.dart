@@ -1,10 +1,12 @@
-import 'package:college_project/utils/text_constants.dart';
-import 'package:college_project/view/intro_screens/know_yout_product.dart';
+import 'package:college_project/main.dart';
+import 'package:college_project/view/allergy_screen/food_allergy.dart';
 import 'package:college_project/view/intro_screens/widgets/bottom_navigator_container.dart';
+import 'package:college_project/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class WelcomePage extends StatelessWidget {
-  const WelcomePage({super.key});
+class KnowYourProduct extends StatelessWidget {
+  const KnowYourProduct({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +22,18 @@ class WelcomePage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: mediawidth * .3),
                 child: Container(
-                  height: mediaHeight * .35,
-                  width: mediawidth * .36,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage('assets/images/intro_image1.png'))),
+                  child: Image(
+                      width: mediaHeight * .35,
+                      image: AssetImage('assets/images/intro_image2.png')),
                 ),
               ),
               Spacer(),
               Text(
-                "Wecome to ${ConstantTexts.appName}",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                "Know your product",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
               ),
               Text(
-                "Find products that align with your dietry and\nhealth needs",
+                "Scan food or cosmetic products\nand get their analysis",
                 style: TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
               ),
@@ -48,12 +46,21 @@ class WelcomePage extends StatelessWidget {
       ),
       bottomNavigationBar: InkWell(
           onTap: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => KnowYourProduct()));
+            logout(context);
+            // Navigator.of(context)
+            //     .push((MaterialPageRoute(builder: (context) => LoginScreen())));
           },
           child: BottomNavigatorContainer(
             text: "Next",
           )),
     );
+  }
+
+  logout(BuildContext context) async {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => FoodAllergy()),
+        (Route) => false);
+    final _sharedPref = await SharedPreferences.getInstance();
+    await _sharedPref.setBool(SAVE_KEY_NAME, false);
   }
 }
