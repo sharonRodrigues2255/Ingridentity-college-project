@@ -1,4 +1,6 @@
+import 'package:college_project/controller/registration_controller.dart';
 import 'package:college_project/main.dart';
+import 'package:college_project/view/intro_screens/welcome_page.dart';
 import 'package:college_project/view/registration_screen/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,6 +13,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  @override
+  void initState() {
+    registrationController.loadDb();
+    super.initState();
+  }
+
+  bool _isSecurePassword = true;
+  RegistrationController registrationController = RegistrationController();
   final _formkey = GlobalKey<FormState>();
   TextEditingController _usernamecontroller = TextEditingController();
   TextEditingController _passwordcontroller = TextEditingController();
@@ -19,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     FocusNode fieldone = FocusNode();
     FocusNode fieldtwo = FocusNode();
-    var mediaheight = MediaQuery.sizeOf(context).height;
+    // var mediaheight = MediaQuery.sizeOf(context).height;
     var mediawidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -63,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'username',
+                            hintText: 'username or email',
                             prefixIcon: Icon(Icons.person)),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -99,14 +109,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: _passwordcontroller,
                         scrollPhysics: NeverScrollableScrollPhysics(),
                         focusNode: fieldtwo,
-                        onFieldSubmitted: (value) {
-                          FocusScope.of(context).requestFocus(fieldtwo);
-                        },
+                        // onFieldSubmitted: (value) {
+                        //   FocusScope.of(context).requestFocus(fieldtwo);
+                        // },
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: 'password',
                             prefixIcon: Icon(Icons.key),
-                            suffixIcon: Icon(Icons.remove_red_eye_outlined)),
+                            suffixIcon: togglePassword()),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return ('required');
@@ -114,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             return (null);
                           }
                         },
-                        obscureText: true,
+                        obscureText: _isSecurePassword,
                       ),
                     ),
                   ),
@@ -147,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: InkWell(
                   onTap: () {
                     if (_formkey.currentState!.validate()) {
-                      checkLogin(context);
+                      checkLogin(context, 5);
                     }
                   },
                   child: Container(
@@ -172,14 +182,16 @@ class _LoginScreenState extends State<LoginScreen> {
         ));
   }
 
-  void checkLogin(BuildContext context) async {
+  void checkLogin(BuildContext context, index) async {
     final _username = _usernamecontroller.text;
     final _password = _passwordcontroller.text;
-    if (_username == _password) {
+    if (_username == registrationController.userCred[index].email ||
+        _username == registrationController.userCred[index].username &&
+            _password == registrationController.userCred[index].password) {
       final _sharedPref = await SharedPreferences.getInstance();
       await _sharedPref.setBool(SAVE_KEY_NAME, true);
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => RegistrationScreen()));
+          MaterialPageRoute(builder: (context) => WelcomePage()));
     } else {
       final _errorMessage = 'password and username does not matchhhhh';
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -188,5 +200,17 @@ class _LoginScreenState extends State<LoginScreen> {
           margin: EdgeInsets.all(10),
           content: Text(_errorMessage)));
     }
+  }
+
+  Widget togglePassword() {
+    return IconButton(
+        onPressed: () {
+          setState(() {
+            _isSecurePassword = !_isSecurePassword;
+          });
+        },
+        icon: _isSecurePassword
+            ? Icon(Icons.visibility)
+            : Icon(Icons.visibility_off));
   }
 }
