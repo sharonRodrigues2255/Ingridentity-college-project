@@ -1,4 +1,5 @@
 import 'package:college_project/main.dart';
+import 'package:college_project/view/allergy_screen/food_allergy.dart';
 import 'package:college_project/view/intro_screens/widgets/bottom_navigator_container.dart';
 import 'package:college_project/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,33 +23,11 @@ class KnowYourProduct extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: mediawidth * .3),
                 child: Container(
                   child: Image(
-                      width: mediawidth * .85,
+                      width: mediaHeight * .35,
                       image: AssetImage('assets/images/intro_image2.png')),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: 3.5,
-                    backgroundColor: Colors.blue,
-                  ),
-                  SizedBox(
-                    width: 3,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.blue,
-                    ),
-                    height: 7,
-                    width: 12,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: mediaHeight * .13,
-              ),
+              Spacer(),
               Text(
                 "Know your product",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
@@ -57,6 +36,9 @@ class KnowYourProduct extends StatelessWidget {
                 "Scan food or cosmetic products\nand get their analysis",
                 style: TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 20,
               )
             ],
           ),
@@ -68,13 +50,15 @@ class KnowYourProduct extends StatelessWidget {
             // Navigator.of(context)
             //     .push((MaterialPageRoute(builder: (context) => LoginScreen())));
           },
-          child: BottomNavigatorContainer()),
+          child: BottomNavigatorContainer(
+            text: "Next",
+          )),
     );
   }
 
   logout(BuildContext context) async {
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => FoodAllergy()),
         (Route) => false);
     final _sharedPref = await SharedPreferences.getInstance();
     await _sharedPref.setBool(SAVE_KEY_NAME, false);

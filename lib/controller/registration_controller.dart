@@ -22,10 +22,5 @@ class RegistrationController {
             email: e.email, username: e.username, password: e.password))
         .toList();
     print(userCred);
-    // if (userCred != null) {
-    //   return userCred;
-    // } else {
-    //   return null;
-    // }
   }
 }

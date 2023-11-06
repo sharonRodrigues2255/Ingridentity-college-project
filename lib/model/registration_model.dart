@@ -10,8 +10,18 @@ class UserRegModel {
   @HiveField(2)
   var password;
 
+  @HiveField(3)
+  final List? allegicItemsList;
+
+  @HiveField(4)
+  final List? scanHistory;
+
   UserRegModel(
-      {required this.email, required this.username, required this.password});
+      {required this.email,
+      required this.username,
+      required this.password,
+      this.scanHistory,
+      this.allegicItemsList});
   @override
   String toString() {
     // TODO: implement toString

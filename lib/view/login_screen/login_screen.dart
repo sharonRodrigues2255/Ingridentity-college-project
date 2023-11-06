@@ -15,7 +15,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
-    registrationController.loadDb();
+    // registrationController.loadDb();
     super.initState();
   }
 

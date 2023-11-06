@@ -1,7 +1,6 @@
 import 'package:college_project/main.dart';
 import 'package:college_project/view/intro_screens/welcome_page.dart';
 import 'package:college_project/view/login_screen/login_screen.dart';
-import 'package:college_project/view/registration_screen/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,12 +22,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -40,13 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
-
-  Future<void> gotToLoging() async {
+  Future<void> goToLogin() async {
     await Future.delayed(Duration(seconds: 3));
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => LoginScreen()));
@@ -56,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final _SharedPref = await SharedPreferences.getInstance();
     final userLogged = _SharedPref.get(SAVE_KEY_NAME);
     if (userLogged == null || userLogged == false) {
-      gotToLoging();
+      goToLogin();
     } else {
       splashWait();
     }

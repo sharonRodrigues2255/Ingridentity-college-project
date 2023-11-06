@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class BottomNavigatorContainer extends StatelessWidget {
-  const BottomNavigatorContainer({
-    super.key,
-  });
+  const BottomNavigatorContainer({super.key, required this.text});
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class BottomNavigatorContainer extends StatelessWidget {
         height: 50,
         child: Center(
           child: Text(
-            "Next",
+            text,
             style: TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
           ),
