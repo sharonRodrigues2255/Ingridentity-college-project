@@ -159,9 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: InkWell(
                   onTap: () {
                     if (_formkey.currentState!.validate()) {
-                      checkLogin(context, index);
-                    } else {
-                      index = index + 1;
+                      checkLogin(context, 0);
                     }
                   },
                   child: Container(
