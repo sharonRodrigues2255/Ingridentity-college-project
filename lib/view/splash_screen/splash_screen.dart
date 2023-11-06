@@ -1,4 +1,7 @@
 import 'package:college_project/main.dart';
+import 'package:college_project/view/bottom_navigation/bottom_navigation.dart';
+
+import 'package:college_project/view/bottom_navigation/screens/scanner_screen.dart';
 import 'package:college_project/view/intro_screens/welcome_page.dart';
 import 'package:college_project/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 3)).then((value) =>
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => WelcomePage()),
+            MaterialPageRoute(builder: (context) => BottomNavigationScreen()),
             (route) => false));
   }
 }

@@ -16,8 +16,8 @@ class RegistrationController {
   }
 
   loadDb() {
-    final List dbData = db.get('usercred');
-    userCred = dbData
+    final List? dbData = db.get('usercred') ?? [];
+    userCred = dbData!
         .map((e) => UserRegModel(
             email: e.email, username: e.username, password: e.password))
         .toList();

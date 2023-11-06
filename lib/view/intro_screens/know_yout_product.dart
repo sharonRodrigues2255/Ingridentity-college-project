@@ -46,21 +46,12 @@ class KnowYourProduct extends StatelessWidget {
       ),
       bottomNavigationBar: InkWell(
           onTap: () {
-            logout(context);
-            // Navigator.of(context)
-            //     .push((MaterialPageRoute(builder: (context) => LoginScreen())));
+            Navigator.of(context)
+                .push((MaterialPageRoute(builder: (context) => FoodAllergy())));
           },
           child: BottomNavigatorContainer(
             text: "Next",
           )),
     );
-  }
-
-  logout(BuildContext context) async {
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => FoodAllergy()),
-        (Route) => false);
-    final _sharedPref = await SharedPreferences.getInstance();
-    await _sharedPref.setBool(SAVE_KEY_NAME, false);
   }
 }
