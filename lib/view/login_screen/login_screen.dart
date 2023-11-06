@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
+  int index = 0;
   bool _isSecurePassword = true;
   RegistrationController registrationController = RegistrationController();
   final _formkey = GlobalKey<FormState>();
@@ -158,7 +159,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: InkWell(
                   onTap: () {
                     if (_formkey.currentState!.validate()) {
-                      checkLogin(context, 0);
+                      checkLogin(context, index);
+                    } else {
+                      index = index + 1;
                     }
                   },
                   child: Container(

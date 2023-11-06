@@ -14,7 +14,7 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   void initState() {
-    // registrationController.loadDb() ?? [];
+    registrationController.loadDb() ?? [];
     super.initState();
   }
 
