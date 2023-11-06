@@ -1,6 +1,6 @@
-import 'package:college_project/view/bottom_navigation/screens/history_screen.dart';
-import 'package:college_project/view/bottom_navigation/screens/scanner_screen.dart';
-import 'package:college_project/view/bottom_navigation/screens/settings_screen.dart';
+import 'package:college_project/view/bottom_navigation/screens/history_screen/history_screen.dart';
+import 'package:college_project/view/bottom_navigation/screens/scanner_screen/scanner_screen.dart';
+import 'package:college_project/view/bottom_navigation/screens/settings_screen/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationScreen extends StatefulWidget {

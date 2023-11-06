@@ -9,7 +9,7 @@ class FoodAllergy extends StatefulWidget {
   State<FoodAllergy> createState() => _FoodAllergyState();
 }
 
-List allergicItemsList = [];
+List<String> allergicItemsList = [];
 
 class _FoodAllergyState extends State<FoodAllergy> {
   List<Map> allergy = [
