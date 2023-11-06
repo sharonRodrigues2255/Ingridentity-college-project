@@ -15,6 +15,7 @@ class ScannerScreen extends StatefulWidget {
 class _ScannerScreenState extends State<ScannerScreen> {
   @override
   Widget build(BuildContext context) {
+    isScanCompleted = false;
     return Scaffold(
       appBar: AppBar(
         title: Text("Scanner"),
@@ -49,19 +50,32 @@ class _ScannerScreenState extends State<ScannerScreen> {
       ),
     );
   }
-}
 
-checkQrCode(List<Barcode> codes, BuildContext context) {
-  for (Barcode? code in codes) {
-    if (allergicItemsList
-        .map((e) => e.toLowerCase())
-        .contains(code?.rawValue?.toLowerCase())) {
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ScanResult(
-                result: false,
-              )));
+  checkQrCode(List<Barcode> codes, BuildContext context) {
+    for (Barcode? code in codes) {
+      if (allergicItemsList
+          .map((e) => e.toLowerCase())
+          .contains(code?.rawValue?.toLowerCase())) {
+        if (!isScanCompleted) {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => ScanResult(
+                    result: true,
+                  )));
+          isScanCompleted = true;
+          setState(() {});
+        }
+      } else {
+        if (!isScanCompleted) {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => ScanResult(
+                    result: false,
+                  )));
+          isScanCompleted = true;
+          setState(() {});
+        }
+      }
     }
   }
-  Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => ScanResult(result: true)));
 }
+
+bool isScanCompleted = false;
