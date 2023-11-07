@@ -17,27 +17,24 @@ class UserRegModelAdapter extends TypeAdapter<UserRegModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return UserRegModel(
-      email: fields[0] as String,
-      username: fields[1] as String,
-      password: fields[2] as dynamic,
-      scanHistory: (fields[4] as List?)?.cast<dynamic>(),
-      allegicItemsList: (fields[3] as List?)?.cast<dynamic>(),
+      username: fields[0] as String,
+      password: fields[1] as dynamic,
+      scanHistory: (fields[3] as List?)?.cast<dynamic>(),
+      allegicItemsList: (fields[2] as List?)?.cast<dynamic>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, UserRegModel obj) {
     writer
-      ..writeByte(5)
-      ..writeByte(0)
-      ..write(obj.email)
-      ..writeByte(1)
-      ..write(obj.username)
-      ..writeByte(2)
-      ..write(obj.password)
-      ..writeByte(3)
-      ..write(obj.allegicItemsList)
       ..writeByte(4)
+      ..writeByte(0)
+      ..write(obj.username)
+      ..writeByte(1)
+      ..write(obj.password)
+      ..writeByte(2)
+      ..write(obj.allegicItemsList)
+      ..writeByte(3)
       ..write(obj.scanHistory);
   }
 

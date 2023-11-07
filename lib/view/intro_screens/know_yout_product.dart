@@ -1,9 +1,6 @@
-import 'package:college_project/main.dart';
 import 'package:college_project/view/allergy_screen/food_allergy.dart';
 import 'package:college_project/view/intro_screens/widgets/bottom_navigator_container.dart';
-import 'package:college_project/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class KnowYourProduct extends StatelessWidget {
   const KnowYourProduct({super.key});

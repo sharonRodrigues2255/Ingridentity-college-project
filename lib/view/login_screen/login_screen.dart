@@ -1,5 +1,6 @@
 import 'package:college_project/controller/registration_controller.dart';
 import 'package:college_project/main.dart';
+import 'package:college_project/model/registration_model.dart';
 import 'package:college_project/view/intro_screens/welcome_page.dart';
 import 'package:college_project/view/registration_screen/registration_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
-    registrationController.loadDb();
+    registrationController.loadmydb();
     super.initState();
   }
 
@@ -39,28 +40,23 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Form(
           key: _formkey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 300,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    ),
-                    color: Colors.lightGreen),
-                child: Image.asset(
-                  'assets/images/shopping.png',
-                  fit: BoxFit.cover,
+              Padding(
+                padding: const EdgeInsets.only(left: 35),
+                child: Text(
+                  "Login",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
                 ),
               ),
-
               Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 44),
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                 child: Material(
                   borderRadius: BorderRadius.circular(15),
                   elevation: 4,
                   child: Container(
-                    height: 60,
+                    height: 65,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.white),
@@ -81,8 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return ('required');
-                          } else if (value.isNotEmpty &&
-                              mydb.keys.contains(value)) {
+                          } else if (!mydb.keys.contains(value)) {
                             return ("UserName is not registered");
                           } else {
                             return null;
@@ -93,12 +88,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              // Positioned(
-              //     bottom: 450,
-              //     child: Padding(
-              //       padding: const EdgeInsets.only(left: 180),
-              //       child: Container(child: Text('OR')),
-              //     )),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
                 child: Material(
@@ -115,9 +104,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: _passwordcontroller,
                         scrollPhysics: NeverScrollableScrollPhysics(),
                         focusNode: fieldtwo,
-                        // onFieldSubmitted: (value) {
-                        //   FocusScope.of(context).requestFocus(fieldtwo);
-                        // },
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: 'password',
@@ -156,7 +142,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       )),
                 ],
               ),
-
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 70, vertical: 5),
@@ -173,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 50,
                     child: Center(
                       child: Text(
-                        "Sign in",
+                        "Login",
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -189,11 +174,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void checkLogin(BuildContext context, index) async {
+    var mydb = Hive.box('localdb');
     final _username = _usernamecontroller.text;
     final _password = _passwordcontroller.text;
-    if (_username == registrationController.userCred[index].email ||
-        _username == registrationController.userCred[index].username &&
-            _password == registrationController.userCred[index].password) {
+    if (mydb.get(_username)!.password == _password) {
       final _sharedPref = await SharedPreferences.getInstance();
       await _sharedPref.setBool(SAVE_KEY_NAME, true);
       Navigator.of(context).pushReplacement(

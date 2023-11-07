@@ -1,7 +1,5 @@
 import 'package:college_project/view/allergy_screen/food_allergy.dart';
 import 'package:college_project/view/bottom_navigation/screens/scanner_screen/screens/scan_result.dart';
-import 'package:college_project/view/intro_screens/know_yout_product.dart';
-import 'package:college_project/view/intro_screens/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:rive/rive.dart';

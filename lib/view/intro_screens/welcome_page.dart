@@ -14,35 +14,40 @@ class WelcomePage extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(7.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: mediawidth * .3),
-                child: Container(
-                  height: mediaHeight * .35,
-                  width: mediawidth * .36,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage('assets/images/intro_image1.png'))),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: mediawidth * .3),
+                  child: Container(
+                    height: mediaHeight * .35,
+                    width: mediawidth * .36,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image:
+                                AssetImage('assets/images/intro_image1.png'))),
+                  ),
                 ),
-              ),
-              Spacer(),
-              Text(
-                "Wecome to ${ConstantTexts.appName}",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-              Text(
-                "Find products that align with your dietry and\nhealth needs",
-                style: TextStyle(fontSize: 16),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: 20,
-              )
-            ],
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  "Wecome to ${ConstantTexts.appName}",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                Text(
+                  "Find products that align with your dietry and\nhealth needs",
+                  style: TextStyle(fontSize: 16),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 20,
+                )
+              ],
+            ),
           ),
         ),
       ),

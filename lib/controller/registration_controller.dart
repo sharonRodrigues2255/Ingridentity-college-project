@@ -2,25 +2,16 @@ import 'package:college_project/model/registration_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class RegistrationController {
-  List<UserRegModel> userCred = [];
-  Box db = Hive.box('localdb');
+  List userCred = [];
+  var mydb = Hive.box('localdb');
   void SaveUserData(UserRegModel data) {
-    userCred.add(data);
-    print(userCred);
-    updateDb();
+    mydb.put(data.username, data);
+
+    loadmydb();
   }
 
-  updateDb() {
-    db.put('usercred', userCred);
-    print(db.get('usercred'));
-  }
-
-  loadDb() {
-    final List? dbData = db.get('usercred') ?? [];
-    userCred = dbData!
-        .map((e) => UserRegModel(
-            email: e.email, username: e.username, password: e.password))
-        .toList();
-    print(userCred);
+  loadmydb() {
+    userCred.clear();
+    userCred.addAll(mydb.values);
   }
 }

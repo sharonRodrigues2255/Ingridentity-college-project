@@ -1,5 +1,4 @@
 import 'package:college_project/view/bottom_navigation/bottom_navigation.dart';
-import 'package:college_project/view/diet_screen/dietselect.dart';
 import 'package:flutter/material.dart';
 
 class FoodAllergy extends StatefulWidget {
@@ -195,6 +194,7 @@ class _FoodAllergyState extends State<FoodAllergy> {
                         ),
                         TextButton(
                             onPressed: () {
+                              Navigator.of(context).pop();
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

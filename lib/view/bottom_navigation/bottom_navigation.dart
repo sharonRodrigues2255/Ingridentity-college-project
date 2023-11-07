@@ -36,4 +36,4 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
 }
 
 List _pages = [ScannerScreen(), History(), Settings()];
-int selectedIndex = 0;
+int selectedIndex = 1;
