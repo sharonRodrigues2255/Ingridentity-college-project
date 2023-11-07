@@ -1,9 +1,9 @@
 import 'package:college_project/controller/registration_controller.dart';
 import 'package:college_project/main.dart';
-import 'package:college_project/view/bottom_navigation/bottom_navigation.dart';
 import 'package:college_project/view/intro_screens/welcome_page.dart';
 import 'package:college_project/view/registration_screen/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -29,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var mydb = Hive.box("localdb");
     FocusNode fieldone = FocusNode();
     FocusNode fieldtwo = FocusNode();
     // var mediaheight = MediaQuery.sizeOf(context).height;
@@ -80,8 +81,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return ('required');
+                          } else if (value.isNotEmpty &&
+                              mydb.keys.contains(value)) {
+                            return ("UserName is not registered");
                           } else {
-                            return (null);
+                            return null;
                           }
                         },
                       ),
@@ -169,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 50,
                     child: Center(
                       child: Text(
-                        "Signin",
+                        "Sign in",
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

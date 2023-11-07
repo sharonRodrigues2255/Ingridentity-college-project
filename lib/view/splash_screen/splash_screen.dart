@@ -1,8 +1,5 @@
 import 'package:college_project/main.dart';
 import 'package:college_project/view/bottom_navigation/bottom_navigation.dart';
-
-import 'package:college_project/view/bottom_navigation/screens/scanner_screen.dart';
-import 'package:college_project/view/intro_screens/welcome_page.dart';
 import 'package:college_project/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,9 +14,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // Future.delayed(Duration(seconds: 3)).then((value) => Navigator.of(context)
-    //     .pushReplacement(
-    //         MaterialPageRoute(builder: (context) => const WelcomePage())));
     checkUserLoggedIn();
     super.initState();
   }
