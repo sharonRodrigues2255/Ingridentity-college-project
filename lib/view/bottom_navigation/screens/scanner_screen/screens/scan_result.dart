@@ -10,61 +10,68 @@ class ScanResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: result
-            ? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Lottie.asset("assets/lottie/lottie2.json",
-                          width: 150, height: 150),
-                    ),
-                    Text(
-                      "Food item is Harmfull for you",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red),
-                    ),
-                    InkWell(
-                        onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      BottomNavigationScreen()));
-                        },
-                        child: BottomNavigatorContainer(text: "Scan again"))
-                  ],
-                ),
-              )
-            : Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Lottie.asset("assets/lottie/lottie1.json",
-                          width: 150, height: 150),
-                    ),
-                    Text(
-                      "Food item is Healthy for you",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green),
-                    ),
-                    InkWell(
-                        onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      BottomNavigationScreen()));
-                        },
-                        child: BottomNavigatorContainer(text: "Scan again"))
-                  ],
-                ),
-              ));
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => BottomNavigationScreen()));
+        return true;
+      },
+      child: Scaffold(
+          body: result
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Lottie.asset("assets/lottie/lottie2.json",
+                            width: 150, height: 150),
+                      ),
+                      Text(
+                        "Food item is Harmfull for you",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red),
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        BottomNavigationScreen()));
+                          },
+                          child: BottomNavigatorContainer(text: "Scan again"))
+                    ],
+                  ),
+                )
+              : Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Lottie.asset("assets/lottie/lottie1.json",
+                            width: 150, height: 150),
+                      ),
+                      Text(
+                        "Food item is Healthy for you",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green),
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        BottomNavigationScreen()));
+                          },
+                          child: BottomNavigatorContainer(text: "Scan again"))
+                    ],
+                  ),
+                )),
+    );
   }
 }

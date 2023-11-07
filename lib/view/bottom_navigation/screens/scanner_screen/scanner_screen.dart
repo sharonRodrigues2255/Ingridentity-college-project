@@ -4,6 +4,7 @@ import 'package:college_project/view/intro_screens/know_yout_product.dart';
 import 'package:college_project/view/intro_screens/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:rive/rive.dart';
 
 class ScannerScreen extends StatefulWidget {
   const ScannerScreen({super.key});
@@ -35,15 +36,26 @@ class _ScannerScreenState extends State<ScannerScreen> {
             SizedBox(
               height: 20,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width - 150,
-              height: MediaQuery.of(context).size.width - 150,
-              child: MobileScanner(
-                  controller: MobileScannerController(
-                      detectionSpeed: DetectionSpeed.normal),
-                  onDetect: (qrCode) {
-                    checkQrCode(qrCode.barcodes, context);
-                  }),
+            Stack(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width - 80,
+                  height: MediaQuery.of(context).size.width - 80,
+                  child: MobileScanner(
+                      controller: MobileScannerController(
+                          detectionSpeed: DetectionSpeed.normal),
+                      onDetect: (qrCode) {
+                        checkQrCode(qrCode.barcodes, context);
+                      }),
+                ),
+                Container(
+                    height: MediaQuery.of(context).size.width - 80,
+                    width: MediaQuery.of(context).size.width - 80,
+                    child: RiveAnimation.asset(
+                      'assets/rive_animations/scan_animation.riv',
+                      fit: BoxFit.cover,
+                    ))
+              ],
             )
           ],
         ),
