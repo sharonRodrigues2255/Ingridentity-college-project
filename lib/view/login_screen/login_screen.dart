@@ -31,131 +31,186 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     var mydb = Hive.box("localdb");
-    FocusNode fieldone = FocusNode();
-    FocusNode fieldtwo = FocusNode();
+
     // var mediaheight = MediaQuery.sizeOf(context).height;
     var mediawidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Form(
           key: _formkey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 35),
-                child: Text(
-                  "Login",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                child: Material(
-                  borderRadius: BorderRadius.circular(15),
-                  elevation: 4,
-                  child: Container(
-                    height: 65,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        controller: _usernamecontroller,
-                        keyboardType: TextInputType.emailAddress,
-                        scrollPhysics: NeverScrollableScrollPhysics(),
-                        focusNode: fieldone,
-                        onFieldSubmitted: (value) {
-                          FocusScope.of(context).requestFocus(fieldtwo);
-                        },
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'username or email',
-                            prefixIcon: Icon(Icons.person)),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return ('required');
-                          } else if (!mydb.keys.contains(value)) {
-                            return ("UserName is not registered");
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                    ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 35),
+                  child: Text(
+                    "Login",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
-                child: Material(
-                  borderRadius: BorderRadius.circular(15),
-                  elevation: 4,
-                  child: Container(
-                    height: 60,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        controller: _passwordcontroller,
-                        scrollPhysics: NeverScrollableScrollPhysics(),
-                        focusNode: fieldtwo,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'password',
-                            prefixIcon: Icon(Icons.key),
-                            suffixIcon: togglePassword()),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return ('required');
-                          } else {
-                            return (null);
-                          }
-                        },
-                        obscureText: _isSecurePassword,
-                      ),
-                    ),
-                  ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                //   child: Material(
+                //     borderRadius: BorderRadius.circular(15),
+                //     elevation: 4,
+                //     child: Container(
+                //       decoration: BoxDecoration(
+                //           borderRadius: BorderRadius.circular(15),
+                //           color: Colors.white),
+                //       child: Padding(
+                //         padding: const EdgeInsets.all(8.0),
+                //         child: TextFormField(
+                //           controller: _usernamecontroller,
+                //           keyboardType: TextInputType.emailAddress,
+                //           scrollPhysics: NeverScrollableScrollPhysics(),
+                //           focusNode: fieldone,
+                //           onFieldSubmitted: (value) {
+                //             FocusScope.of(context).requestFocus(fieldtwo);
+                //           },
+                //           decoration: InputDecoration(
+                //               border: InputBorder.none,
+                //               hintText: 'username or email',
+                //               prefixIcon: Icon(Icons.person)),
+                //           validator: (value) {
+                //             if (value == null || value.isEmpty) {
+                //               return ('required');
+                //             } else if (!mydb.keys.contains(value)) {
+                //               return ("UserName is not registered");
+                //             } else {
+                //               return null;
+                //             }
+                //           },
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                SizedBox(
+                  height: 30,
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => RegistrationScreen()));
-                      },
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 25, vertical: 1),
-                        child: Text(
-                          'Dont have account?',
-                          style: TextStyle(fontSize: mediawidth * .03),
-                        ),
-                      )),
-                ],
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 70, vertical: 5),
-                child: InkWell(
+                TextFormField(
+                  decoration: InputDecoration(
+                      hintText: "username",
+                      //  isDense: true,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                          borderRadius: BorderRadius.circular(12)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                      labelText: "username",
+                      border: OutlineInputBorder(),
+                      suffixIcon: Icon(Icons.person)),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return ('required');
+                    } else if (!mydb.keys.contains(value)) {
+                      return ("UserName is not registered");
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
+                //   child: Material(
+                //     borderRadius: BorderRadius.circular(15),
+                //     elevation: 4,
+                //     child: Container(
+                //       height: 60,
+                //       decoration: BoxDecoration(
+                //           borderRadius: BorderRadius.circular(15),
+                //           color: Colors.white),
+                //       child: Padding(
+                //         padding: const EdgeInsets.all(8.0),
+                //         child: TextFormField(
+                //           controller: _passwordcontroller,
+                //           scrollPhysics: NeverScrollableScrollPhysics(),
+                //           focusNode: fieldtwo,
+                //           decoration: InputDecoration(
+                //               border: InputBorder.none,
+                //               hintText: 'password',
+                //               prefixIcon: Icon(Icons.key),
+                //               suffixIcon: togglePassword()),
+                //           validator: (value) {
+                //             if (value == null || value.isEmpty) {
+                //               return ('required');
+                //             } else {
+                //               return (null);
+                //             }
+                //           },
+                //           obscureText: _isSecurePassword,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      hintText: "Password",
+                      //  isDense: true,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                          borderRadius: BorderRadius.circular(12)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                      labelText: "Password",
+                      border: OutlineInputBorder(),
+                      //  focusedBorder: OutlineInputBorder()
+
+                      suffixIcon: Icon(Icons.remove_red_eye)),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return ('required');
+                    } else {
+                      return (null);
+                    }
+                  },
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RegistrationScreen()));
+                        },
+                        child: Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 25, vertical: 1),
+                          child: Text(
+                            'Dont have account?',
+                            style: TextStyle(fontSize: mediawidth * .03),
+                          ),
+                        )),
+                  ],
+                ),
+                SizedBox(height: 50),
+                InkWell(
                   onTap: () {
                     if (_formkey.currentState!.validate()) {
                       checkLogin(context, 0);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => WelcomePage(),
+                          ));
                     }
                   },
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.blue,
-                        borderRadius: BorderRadius.circular(15)),
+                        borderRadius: BorderRadius.circular(10)),
                     height: 50,
+                    width: double.infinity,
                     child: Center(
                       child: Text(
                         "Login",
@@ -167,8 +222,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
   }
