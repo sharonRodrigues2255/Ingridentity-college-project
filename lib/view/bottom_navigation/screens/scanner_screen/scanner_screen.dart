@@ -1,3 +1,5 @@
+import 'package:college_project/controller/history_controller.dart';
+import 'package:college_project/model/history_model.dart';
 import 'package:college_project/view/allergy_screen/food_allergy.dart';
 import 'package:college_project/view/bottom_navigation/screens/scanner_screen/screens/scan_result.dart';
 import 'package:flutter/material.dart';
@@ -67,6 +69,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
           .map((e) => e.toLowerCase())
           .contains(code?.rawValue?.toLowerCase())) {
         if (!isScanCompleted) {
+          HistoryController.addToHistory(HistoryModel(
+              id: DateTime.now().millisecond,
+              scanresult: code?.rawValue,
+              time: DateTime.now()));
           Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => ScanResult(
                     result: true,
@@ -76,6 +82,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
         }
       } else {
         if (!isScanCompleted) {
+          HistoryController.addToHistory(HistoryModel(
+              id: DateTime.now().millisecond,
+              scanresult: code?.rawValue,
+              time: DateTime.now()));
           Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => ScanResult(
                     result: false,
