@@ -13,6 +13,7 @@ class History extends StatefulWidget {
 class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
+    HistoryController.loadHistory();
     return Scaffold(
         appBar: AppBar(
           title: Text("Scan History"),
@@ -62,17 +63,25 @@ class _HistoryState extends State<History> {
                   ],
                 ),
               )
-            : Expanded(
-                child: ListView.builder(
-                    itemCount: HistoryController.historyList.length,
-                    itemBuilder: (context, index) {
-                      final data = HistoryController.historyList[index];
-                      return ListTile(
-                        trailing: Text('${data.time.hour}-${data.time.minute}'),
-                        title: Text(data.scanresult!),
-                        subtitle: Text(
-                            "${data.time.day}- ${data.time.month} ${data.time.year}"),
-                      );
-                    })));
+            : ListView.builder(
+                itemCount: HistoryController.historyList.length,
+                itemBuilder: (context, index) {
+                  final data = HistoryController.historyList[index];
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor:
+                          data.isPositive ? Colors.red : Colors.green,
+                      radius: 15,
+                      child: data.isPositive
+                          ? Icon(Icons.close)
+                          : Icon(Icons.check),
+                    ),
+                    trailing: Text(
+                        '${data.time.hour.toString().padLeft(2, "0")}-${data.time.minute.toString().padLeft(2, "0")}'),
+                    title: Text(data.scanresult!),
+                    subtitle: Text(
+                        "${data.time.day}- ${data.time.month} ${data.time.year}"),
+                  );
+                }));
   }
 }

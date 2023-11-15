@@ -12,6 +12,12 @@ class HistoryModel extends HiveObject {
   @HiveField(2)
   final DateTime time;
 
+  @HiveField(3)
+  final bool isPositive;
+
   HistoryModel(
-      {required this.id, required this.scanresult, required this.time});
+      {required this.id,
+      required this.scanresult,
+      required this.time,
+      required this.isPositive});
 }

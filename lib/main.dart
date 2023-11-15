@@ -1,7 +1,5 @@
 import 'package:college_project/model/history_model.dart';
-import 'package:college_project/model/registration_model.dart';
 import 'package:college_project/view/intro_screens/welcome_page.dart';
-import 'package:college_project/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

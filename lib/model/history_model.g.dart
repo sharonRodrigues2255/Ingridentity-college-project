@@ -20,19 +20,22 @@ class HistoryModelAdapter extends TypeAdapter<HistoryModel> {
       id: fields[0] as int,
       scanresult: fields[1] as String?,
       time: fields[2] as DateTime,
+      isPositive: fields[3] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, HistoryModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.scanresult)
       ..writeByte(2)
-      ..write(obj.time);
+      ..write(obj.time)
+      ..writeByte(3)
+      ..write(obj.isPositive);
   }
 
   @override

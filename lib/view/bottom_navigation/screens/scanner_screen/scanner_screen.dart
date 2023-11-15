@@ -16,7 +16,9 @@ class ScannerScreen extends StatefulWidget {
 class _ScannerScreenState extends State<ScannerScreen> {
   @override
   Widget build(BuildContext context) {
+    bool detected = false;
     isScanCompleted = false;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Scanner"),
@@ -45,7 +47,11 @@ class _ScannerScreenState extends State<ScannerScreen> {
                       controller: MobileScannerController(
                           detectionSpeed: DetectionSpeed.normal),
                       onDetect: (qrCode) {
-                        checkQrCode(qrCode.barcodes, context);
+                        if (detected == false) {
+                          checkQrCode(qrCode.barcodes, context);
+                          detected = true;
+                          setState(() {});
+                        }
                       }),
                 ),
                 Container(
@@ -72,7 +78,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
           HistoryController.addToHistory(HistoryModel(
               id: DateTime.now().millisecond,
               scanresult: code?.rawValue,
-              time: DateTime.now()));
+              time: DateTime.now(),
+              isPositive: true));
           Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => ScanResult(
                     result: true,
@@ -85,7 +92,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
           HistoryController.addToHistory(HistoryModel(
               id: DateTime.now().millisecond,
               scanresult: code?.rawValue,
-              time: DateTime.now()));
+              time: DateTime.now(),
+              isPositive: false));
           Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => ScanResult(
                     result: false,
