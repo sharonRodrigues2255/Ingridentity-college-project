@@ -9,9 +9,9 @@ class FoodAllergy extends StatefulWidget {
   State<FoodAllergy> createState() => _FoodAllergyState();
 }
 
-final controller = AlergyController();
-
 class _FoodAllergyState extends State<FoodAllergy> {
+  final controller = AlergyController();
+  TextEditingController textEditingController = TextEditingController();
   List<Map> allergy = [
     {"logo": "assets/images/allergyitems/milk.png", "name": "milk"},
     {"logo": "assets/images/allergyitems/fish.png", "name": "fish"},
@@ -163,6 +163,7 @@ class _FoodAllergyState extends State<FoodAllergy> {
                         Padding(
                           padding: const EdgeInsets.only(left: 15, right: 15),
                           child: TextFormField(
+                            controller: textEditingController,
                             keyboardType: TextInputType.multiline,
                             minLines: 1,
                             maxLines: 3,
@@ -174,11 +175,16 @@ class _FoodAllergyState extends State<FoodAllergy> {
                         Padding(
                           padding: const EdgeInsets.all(20),
                           child: InkWell(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        BottomNavigationScreen())),
+                            onTap: () {
+                              controller.alergydb.put(
+                                  textEditingController.text,
+                                  textEditingController.text);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          BottomNavigationScreen()));
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.blue[600],
