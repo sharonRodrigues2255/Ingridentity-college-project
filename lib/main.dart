@@ -9,6 +9,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(HistoryModelAdapter());
   var box = await Hive.openBox<HistoryModel>('HISTORY');
+  var box1 = await Hive.openBox("ALERGIES");
   runApp(const MyApp());
 }
 

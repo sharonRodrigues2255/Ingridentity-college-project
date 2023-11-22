@@ -1,6 +1,6 @@
+import 'package:college_project/controller/alergy_controller.dart';
 import 'package:college_project/controller/history_controller.dart';
 import 'package:college_project/model/history_model.dart';
-import 'package:college_project/view/allergy_screen/food_allergy.dart';
 import 'package:college_project/view/bottom_navigation/screens/scanner_screen/screens/scan_result.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -14,6 +14,7 @@ class ScannerScreen extends StatefulWidget {
 }
 
 class _ScannerScreenState extends State<ScannerScreen> {
+  var controller = AlergyController();
   @override
   Widget build(BuildContext context) {
     bool detected = false;
@@ -71,7 +72,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
   checkQrCode(List<Barcode> codes, BuildContext context) {
     for (Barcode? code in codes) {
-      if (allergicItemsList
+      if (controller.alergydb.values
           .map((e) => e.toLowerCase())
           .contains(code?.rawValue?.toLowerCase())) {
         if (!isScanCompleted) {

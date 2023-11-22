@@ -77,10 +77,10 @@ class _HistoryState extends State<History> {
                           : Icon(Icons.check),
                     ),
                     trailing: Text(
-                        '${data.time.hour.toString().padLeft(2, "0")}-${data.time.minute.toString().padLeft(2, "0")}'),
+                        '${data.time.hour.toString().padLeft(2, "0")}:${data.time.minute.toString().padLeft(2, "0")}'),
                     title: Text(data.scanresult!),
                     subtitle: Text(
-                        "${data.time.day}- ${data.time.month} ${data.time.year}"),
+                        "${data.time.day}-${data.time.month}-${data.time.year}"),
                   );
                 }));
   }

@@ -1,3 +1,4 @@
+import 'package:college_project/controller/alergy_controller.dart';
 import 'package:college_project/view/bottom_navigation/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class FoodAllergy extends StatefulWidget {
   State<FoodAllergy> createState() => _FoodAllergyState();
 }
 
-List<String> allergicItemsList = [];
+final controller = AlergyController();
 
 class _FoodAllergyState extends State<FoodAllergy> {
   List<Map> allergy = [
@@ -69,11 +70,11 @@ class _FoodAllergyState extends State<FoodAllergy> {
                     padding: const EdgeInsets.all(10),
                     child: GestureDetector(
                       onTap: () {
-                        if (!allergicItemsList
+                        if (!controller.alergydb.values
                             .contains(allergy[index]["name"])) {
-                          allergicItemsList.add(allergy[index]["name"]);
+                          controller.addAlergies(allergy[index]["name"]);
                         } else {
-                          allergicItemsList.remove(allergy[index]["name"]);
+                          controller.removeAlergies(allergy[index]["name"]);
                         }
                         setState(() {});
                       },
@@ -100,7 +101,7 @@ class _FoodAllergyState extends State<FoodAllergy> {
                               radius: 10,
                               backgroundColor: Colors.black,
                               child: CircleAvatar(
-                                backgroundColor: allergicItemsList
+                                backgroundColor: controller.alergydb.values
                                         .contains(allergy[index]["name"])
                                     ? Colors.amber
                                     : Colors.white,
