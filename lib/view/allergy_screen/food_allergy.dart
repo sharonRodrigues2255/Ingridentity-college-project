@@ -52,6 +52,9 @@ class _FoodAllergyState extends State<FoodAllergy> {
             ),
             Text("Select ingredients you are allergic to",
                 style: TextStyle(fontSize: 15)),
+            SizedBox(
+              height: 20,
+            ),
             Expanded(
               child: Container(
                 height: 100,

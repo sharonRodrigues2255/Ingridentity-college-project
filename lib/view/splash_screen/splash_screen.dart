@@ -1,6 +1,7 @@
 import 'package:college_project/main.dart';
 import 'package:college_project/view/bottom_navigation/bottom_navigation.dart';
 import 'package:college_project/view/login_screen/login_screen.dart';
+import 'package:college_project/view/registration_screen/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,7 +15,29 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    checkUserLoggedIn();
+    Future.delayed(Duration(seconds: 3)).then((value) async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      final islogged = await prefs.getBool("isLogged");
+      print(islogged);
+
+      if (islogged == true) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BottomNavigationScreen(),
+          ),
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RegistrationScreen(),
+          ),
+        );
+      }
+    });
+
     super.initState();
   }
 
@@ -24,7 +47,9 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Image(image: AssetImage('assets/images/logo.png')),
+          child: Container(
+              width: 200,
+              child: Image(image: AssetImage('assets/images/logo.png'))),
         ),
       ),
     );

@@ -20,16 +20,22 @@ class SettingsTileWidget extends StatelessWidget {
             height: 50,
             child: Row(
               children: [
+                SizedBox(
+                  width: 20,
+                ),
                 Icon(icon),
                 SizedBox(
-                  width: 10,
+                  width: 20,
                 ),
                 Text(
                   text,
                   style: TextStyle(fontSize: 18),
                 ),
                 Spacer(),
-                Icon(Icons.chevron_right)
+                Icon(Icons.chevron_right),
+                SizedBox(
+                  width: 10,
+                ),
               ],
             ),
           ),

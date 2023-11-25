@@ -14,7 +14,7 @@ class Settings extends StatelessWidget {
           title: Text("Settings"),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             children: [
               SettingsTileWidget(
@@ -40,8 +40,18 @@ class Settings extends StatelessWidget {
               SettingsTileWidget(
                 icon: Icons.logout,
                 text: "LogOut",
-                onPress: () {
-                  logout(context);
+                onPress: () async {
+                  final SharedPreferences obj =
+                      await SharedPreferences.getInstance();
+
+                  obj.setBool("isLogged", false);
+
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ),
+                      (route) => false);
                 },
               )
             ],
