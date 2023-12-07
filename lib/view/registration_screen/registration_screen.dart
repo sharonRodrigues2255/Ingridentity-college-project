@@ -41,14 +41,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
-                      hintText: "Email ID",
+                      hintText: "Username",
                       //  isDense: true,
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.blue),
                           borderRadius: BorderRadius.circular(12)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.blue)),
-                      labelText: "Email ID",
+                      labelText: "Username",
                       border: OutlineInputBorder(),
                       suffixIcon: Icon(Icons.person)),
                 ),

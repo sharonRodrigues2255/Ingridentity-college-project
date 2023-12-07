@@ -37,14 +37,14 @@ class _LoginScreenState extends State<LoginScreen> {
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(
-                    hintText: "username",
+                    hintText: "Username",
                     //  isDense: true,
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.blue),
                         borderRadius: BorderRadius.circular(12)),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.blue)),
-                    labelText: "username",
+                    labelText: "Username",
                     border: OutlineInputBorder(),
                     suffixIcon: Icon(Icons.person)),
               ),
