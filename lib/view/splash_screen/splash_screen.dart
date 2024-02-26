@@ -32,12 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  Future<void> goToLogin() async {
-    await Future.delayed(Duration(seconds: 3));
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => LoginScreen()));
-  }
-
+// here  is the function for check the user is already loggedin or not
   Future<void> checkUserLoggedIn() async {
     final _SharedPref = await SharedPreferences.getInstance();
     final userLogged = _SharedPref.get(SAVE_KEY_NAME);
@@ -46,6 +41,12 @@ class _SplashScreenState extends State<SplashScreen> {
     } else {
       splashWait();
     }
+  }
+
+  Future<void> goToLogin() async {
+    await Future.delayed(Duration(seconds: 3));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 
   void splashWait() {
